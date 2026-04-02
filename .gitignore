@@ -36,11 +36,6 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-# MapLoaderFramework
-/Assets/Editor/
-/Assets/Runtime/
-/Assets/Resources/
-/Assets/InternalMaps/
-/Assets/ExternalMaps/
+# AudioManager
 /Assets/Scripts/
 *.meta
