@@ -15,6 +15,7 @@ Optionally integrates with [MapLoaderFramework](https://github.com/RolandKaechel
 - **Persistent settings** — volume values survive sessions via PlayerPrefs
 - **MapLoaderFramework integration** — `MapLoaderAudioBridge` auto-crossfades to the correct music/ambients when chapters change (activated via `AUDIOMANAGER_MLF`)
 - **CutsceneManager integration** — `CutsceneAudioBridge` routes cutscene `PlayAudio` / `StopAudio` steps through AudioManager channels (activated via `AUDIOMANAGER_CSM`)
+- **DialogueManager integration** — `DialogueAudioBridge` routes per-node voice lines and sound cues from DialogueManager through AudioManager's channel system (activated via `AUDIOMANAGER_DM`)
 - **Custom Inspector** — runtime volume sliders, test-play buttons, and a reload button directly in the Unity Inspector
 
 
@@ -201,6 +202,22 @@ Configure which channel cutscene audio plays through in the `CutsceneAudioBridge
 | Crossfade Duration | 0.8 s | Crossfade length in seconds |
 
 
+## DialogueManager Integration
+
+AudioManager can route per-node audio from **DialogueManager** through its channel system, so voice lines and sound cues respect the same per-channel volume controls as music and ambients.
+
+### Enable
+
+1. Add `AUDIOMANAGER_DM` to **Scripting Define Symbols**
+2. Attach `DialogueAudioBridge` to any GameObject in your scene.
+
+`DialogueAudioBridge.Awake()` hooks `DialogueManager.PlayAudioCallback`. Each time a dialogue node with an `audioResource` displays, the clip is dispatched to the AudioManager channel configured in the Inspector (default: `Voice`).
+
+| Setting | Default | Description |
+| ------- | ------- | ----------- |
+| Dialogue Audio Channel | `Voice` | `AudioChannelType` to route node audio through |
+
+
 ## Runtime API
 
 ### `AudioManager`
@@ -266,6 +283,14 @@ Configure which channel cutscene audio plays through in the `CutsceneAudioBridge
 
 Hooks `CutsceneManager.PlayAudioCallback` and `CutsceneManager.StopAudioCallback` automatically on `Awake`.
 
+### `DialogueAudioBridge` *(requires `AUDIOMANAGER_DM`)*
+
+| Member | Description |
+| ------ | ----------- |
+| `dialogueAudioChannel` | Inspector — `AudioChannelType` to route per-node audio through (default: `Voice`) |
+
+Hooks `DialogueManager.PlayAudioCallback` automatically on `Awake`.
+
 
 ## Channel Type Reference
 
@@ -296,6 +321,7 @@ The `Examples/` folder contains ready-to-use files:
 | Unity 2022.3+ | ✓ | |
 | MapLoaderFramework | optional | Required when `AUDIOMANAGER_MLF` is defined |
 | CutsceneManager | optional | Required when `AUDIOMANAGER_CSM` is defined |
+| DialogueManager | optional | Required when `AUDIOMANAGER_DM` is defined |
 | MoonSharp | optional | Required for Lua-triggered audio (included via MapLoaderFramework) |
 
 
