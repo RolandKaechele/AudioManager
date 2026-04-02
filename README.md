@@ -16,6 +16,7 @@ Optionally integrates with [MapLoaderFramework](https://github.com/RolandKaechel
 - **MapLoaderFramework integration** — `MapLoaderAudioBridge` auto-crossfades to the correct music/ambients when chapters change (activated via `AUDIOMANAGER_MLF`)
 - **CutsceneManager integration** — `CutsceneAudioBridge` routes cutscene `PlayAudio` / `StopAudio` steps through AudioManager channels (activated via `AUDIOMANAGER_CSM`)
 - **DialogueManager integration** — `DialogueAudioBridge` routes per-node voice lines and sound cues from DialogueManager through AudioManager's channel system (activated via `AUDIOMANAGER_DM`)
+- **MiniGameManager integration** — `MiniGameAudioBridge` plays configured music/SFX tracks when a mini-game starts, completes, or is aborted (activated via `AUDIOMANAGER_MGM`)
 - **Custom Inspector** — runtime volume sliders, test-play buttons, and a reload button directly in the Unity Inspector
 
 
@@ -291,6 +292,17 @@ Hooks `CutsceneManager.PlayAudioCallback` and `CutsceneManager.StopAudioCallback
 
 Hooks `DialogueManager.PlayAudioCallback` automatically on `Awake`.
 
+### `MiniGameAudioBridge` *(requires `AUDIOMANAGER_MGM`)*
+
+| Inspector Field | Description |
+| --------------- | ----------- |
+| `startMusicId` | Music track id to play when a mini-game starts |
+| `startSfxId` | SFX id to play when a mini-game starts |
+| `completeMusicId` | Music track id to play on completion |
+| `completeSfxId` | SFX id to play on completion |
+| `abortSfxId` | SFX id to play when a mini-game is aborted |
+| `musicFadeDuration` | Crossfade duration in seconds (default: 0.5) |
+
 
 ## Channel Type Reference
 
@@ -322,6 +334,7 @@ The `Examples/` folder contains ready-to-use files:
 | MapLoaderFramework | optional | Required when `AUDIOMANAGER_MLF` is defined |
 | CutsceneManager | optional | Required when `AUDIOMANAGER_CSM` is defined |
 | DialogueManager | optional | Required when `AUDIOMANAGER_DM` is defined |
+| MiniGameManager | optional | Required when `AUDIOMANAGER_MGM` is defined |
 | MoonSharp | optional | Required for Lua-triggered audio (included via MapLoaderFramework) |
 
 
