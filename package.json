@@ -1,0 +1,31 @@
+{
+  "name": "com.rolandkaechele.audiomanager",
+  "displayName": "Audio Manager",
+  "version": "1.0.0",
+  "unity": "2022.3",
+  "description": "A modular Unity audio framework with crossfading music, ambient layering, SFX pooling, per-channel volume control, and optional MapLoaderFramework and CutsceneManager integration.",
+  "author": {
+    "name": "Roland Kaechele",
+    "url": "https://github.com/RolandKaechele/AudioManager"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RolandKaechele/AudioManager.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "unity",
+    "audio",
+    "music",
+    "sfx",
+    "ambient",
+    "crossfade",
+    "2d",
+    "rpg",
+    "framework"
+  ],
+  "documentationUrl": "https://github.com/RolandKaechele/AudioManager#readme",
+  "scripts": {
+    "postinstall": "node postinstall.js"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "town_theme",
+  "label": "Town Square Theme",
+  "resource": "Audio/Music/town_theme",
+  "volume": 0.85,
+  "pitch": 1.0,
+  "loop": true,
+  "channel": 0,
+  "fadeInDuration": 1.5,
+  "fadeOutDuration": 1.0
+}
