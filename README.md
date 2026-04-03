@@ -97,7 +97,7 @@ Place a `.json` file in `Resources/Audio/Tracks/`:
 ### 3. Play from code
 
 ```csharp
-AudioManager.Runtime.AudioManager audio = FindObjectOfType<AudioManager.Runtime.AudioManager>();
+AudioManager.Runtime.AudioManager audio = FindFirstObjectByType<AudioManager.Runtime.AudioManager>();
 
 // Play music by registered track id
 audio.PlayMusic("town_theme");
@@ -166,7 +166,7 @@ On every map or chapter load, `MapLoaderAudioBridge` reads the new map's `audio.
 
 ```csharp
 // Manual call — useful when you load a map directly
-var bridge = FindObjectOfType<MapLoaderAudioBridge>();
+var bridge = FindFirstObjectByType<MapLoaderAudioBridge>();
 bridge.PlayAudioForMap(mapData);   // mapData: MapLoaderFramework.Runtime.MapData
 ```
 
