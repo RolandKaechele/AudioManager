@@ -18,6 +18,7 @@ Optionally integrates with [MapLoaderFramework](https://github.com/RolandKaechel
 - **DialogueManager integration** — `DialogueAudioBridge` routes per-node voice lines and sound cues from DialogueManager through AudioManager's channel system (activated via `AUDIOMANAGER_DM`)
 - **MiniGameManager integration** — `MiniGameAudioBridge` plays configured music/SFX tracks when a mini-game starts, completes, or is aborted (activated via `AUDIOMANAGER_MGM`)
 - **Custom Inspector** — runtime volume sliders, test-play buttons, and a reload button directly in the Unity Inspector
+- **Odin Inspector integration** — `SerializedMonoBehaviour` base for full Inspector serialization of complex types; runtime-display fields marked `[ReadOnly]` in Play Mode (activated via `ODIN_INSPECTOR`)
 
 
 ## Installation
@@ -336,6 +337,7 @@ The `Examples/` folder contains ready-to-use files:
 | DialogueManager | optional | Required when `AUDIOMANAGER_DM` is defined |
 | MiniGameManager | optional | Required when `AUDIOMANAGER_MGM` is defined |
 | MoonSharp | optional | Required for Lua-triggered audio (included via MapLoaderFramework) |
+| Odin Inspector | optional | Required when `ODIN_INSPECTOR` is defined |
 
 
 ## License

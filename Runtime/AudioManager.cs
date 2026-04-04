@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+#if ODIN_INSPECTOR
+using Sirenix.OdinInspector;
+#endif
 
 namespace AudioManager.Runtime
 {
@@ -27,7 +30,11 @@ namespace AudioManager.Runtime
     /// </summary>
     [AddComponentMenu("AudioManager/Audio Manager")]
     [DisallowMultipleComponent]
+#if ODIN_INSPECTOR
+    public class AudioManager : SerializedMonoBehaviour
+#else
     public class AudioManager : MonoBehaviour
+#endif
     {
         // -------------------------------------------------------------------------
         // Inspector
@@ -39,6 +46,9 @@ namespace AudioManager.Runtime
         [SerializeField] private SfxController     sfxController;
 
         [Header("Loaded tracks (read-only)")]
+#if ODIN_INSPECTOR
+        [ReadOnly]
+#endif
         [SerializeField] private List<string> loadedTrackIds = new();
 
         // -------------------------------------------------------------------------
