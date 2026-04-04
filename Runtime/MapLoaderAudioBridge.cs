@@ -1,4 +1,6 @@
+#if AUDIOMANAGER_MLF
 using System.Collections.Generic;
+using MapLoaderFramework.Runtime;
 using UnityEngine;
 
 namespace AudioManager.Runtime
@@ -15,15 +17,13 @@ namespace AudioManager.Runtime
     /// <item>Exposes <see cref="PlayAudioForMap"/> so other systems can feed a MapData manually.</item>
     /// </list>
     /// </para>
-    /// <para>Without the scripting symbol this component compiles as a no-op stub.</para>
     /// </summary>
     [AddComponentMenu("AudioManager/Map Loader Audio Bridge")]
     [DisallowMultipleComponent]
     public class MapLoaderAudioBridge : MonoBehaviour
     {
-#if AUDIOMANAGER_MLF
         private AudioManager _audio;
-        private MapLoaderFramework.Runtime.MapLoaderFramework _framework;
+        private MapLoaderFramework _framework;
 
         [Tooltip("Crossfade duration in seconds when the chapter changes music.")]
         [SerializeField] private float musicCrossfadeDuration = 1.5f;
@@ -33,9 +33,8 @@ namespace AudioManager.Runtime
 
         private void Awake()
         {
-            _audio      = GetComponent<AudioManager>() ?? FindObjectOfType<AudioManager>();
-            _framework  = GetComponent<MapLoaderFramework.Runtime.MapLoaderFramework>()
-                          ?? FindObjectOfType<MapLoaderFramework.Runtime.MapLoaderFramework>();
+            _audio     = GetComponent<AudioManager>() ?? FindObjectOfType<AudioManager>();
+            _framework = GetComponent<MapLoaderFramework>() ?? FindObjectOfType<MapLoaderFramework>();
 
             if (_audio == null)
             {
@@ -64,7 +63,7 @@ namespace AudioManager.Runtime
         // Map loaded handler
         // -------------------------------------------------------------------------
 
-        private void OnMapLoaded(MapLoaderFramework.Runtime.MapData mapData)
+        private void OnMapLoaded(MapData mapData)
         {
             if (_audio == null || mapData == null) return;
             PlayAudioForMap(mapData);
@@ -79,7 +78,7 @@ namespace AudioManager.Runtime
         /// Call this directly when you want to drive audio from a specific map rather than relying
         /// on the chapter-change event.
         /// </summary>
-        public void PlayAudioForMap(MapLoaderFramework.Runtime.MapData mapData)
+        public void PlayAudioForMap(MapData mapData)
         {
             if (_audio == null || mapData == null) return;
 
@@ -106,25 +105,6 @@ namespace AudioManager.Runtime
             _audio?.StopMusic();
             _audio?.StopAmbient();
         }
-
-#else
-        // No-op stub when AUDIOMANAGER_MLF is not defined
-
-        private void Awake()
-        {
-            Debug.Log("[MapLoaderAudioBridge] MapLoaderFramework integration is disabled. " +
-                      "Add the scripting define AUDIOMANAGER_MLF to enable it.");
-        }
-
-        public void PlayAudioForMap(object mapData)
-        {
-            Debug.LogWarning("[MapLoaderAudioBridge] PlayAudioForMap called but AUDIOMANAGER_MLF is not defined.");
-        }
-
-        public void StopAll()
-        {
-            Debug.LogWarning("[MapLoaderAudioBridge] StopAll called but AUDIOMANAGER_MLF is not defined.");
-        }
-#endif
     }
 }
+#endif

@@ -1,3 +1,5 @@
+#if AUDIOMANAGER_CSM
+using CutsceneManager.Runtime;
 using UnityEngine;
 
 namespace AudioManager.Runtime
@@ -15,15 +17,13 @@ namespace AudioManager.Runtime
     /// stop the appropriate channel.</item>
     /// </list>
     /// </para>
-    /// <para>Without the scripting symbol this component compiles as a no-op stub.</para>
     /// </summary>
     [AddComponentMenu("AudioManager/Cutscene Audio Bridge")]
     [DisallowMultipleComponent]
     public class CutsceneAudioBridge : MonoBehaviour
     {
-#if AUDIOMANAGER_CSM
         private AudioManager _audio;
-        private CutsceneManager.Runtime.CutsceneManager _cutscene;
+        private CutsceneManager _cutscene;
 
         [Tooltip("Channel to use for clips played via CutsceneManager PlayAudio steps.")]
         [SerializeField] private AudioChannelType cutsceneAudioChannel = AudioChannelType.Music;
@@ -36,8 +36,7 @@ namespace AudioManager.Runtime
         private void Awake()
         {
             _audio    = GetComponent<AudioManager>() ?? FindObjectOfType<AudioManager>();
-            _cutscene = GetComponent<CutsceneManager.Runtime.CutsceneManager>()
-                        ?? FindObjectOfType<CutsceneManager.Runtime.CutsceneManager>();
+            _cutscene = GetComponent<CutsceneManager>() ?? FindObjectOfType<CutsceneManager>();
 
             if (_audio == null)
             {
@@ -95,15 +94,6 @@ namespace AudioManager.Runtime
             else if (cutsceneAudioChannel == AudioChannelType.Ambient)
                 _audio.StopAmbient();
         }
-
-#else
-        // No-op stub when AUDIOMANAGER_CSM is not defined
-
-        private void Awake()
-        {
-            Debug.Log("[CutsceneAudioBridge] CutsceneManager integration is disabled. " +
-                      "Add the scripting define AUDIOMANAGER_CSM to enable it.");
-        }
-#endif
     }
 }
+#endif
