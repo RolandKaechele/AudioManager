@@ -17,6 +17,7 @@ Optionally integrates with [MapLoaderFramework](https://github.com/RolandKaechel
 - **CutsceneManager integration** — `CutsceneAudioBridge` routes cutscene `PlayAudio` / `StopAudio` steps through AudioManager channels (activated via `AUDIOMANAGER_CSM`)
 - **DialogueManager integration** — `DialogueAudioBridge` routes per-node voice lines and sound cues from DialogueManager through AudioManager's channel system (activated via `AUDIOMANAGER_DM`)
 - **MiniGameManager integration** — `MiniGameAudioBridge` plays configured music/SFX tracks when a mini-game starts, completes, or is aborted (activated via `AUDIOMANAGER_MGM`)
+- **SceneManager integration** — `AudioManagerBridge` in SceneManager crossfades AudioManager to the per-scene `audioTrackId` when a scene loads (activated via `SCENEMANAGER_AM`)
 - **Custom Inspector** — runtime volume sliders, test-play buttons, and a reload button directly in the Unity Inspector
 - **DOTween Pro integration** — `DOTween.To` targets `AudioSource.volume` for all music and ambient crossfade tweens, replacing manual coroutines for smoother transitions (activated via `AUDIOMANAGER_DOTWEEN`)
 - **Odin Inspector integration** — `SerializedMonoBehaviour` base for full Inspector serialization of complex types; runtime-display fields marked `[ReadOnly]` in Play Mode (activated via `ODIN_INSPECTOR`)
