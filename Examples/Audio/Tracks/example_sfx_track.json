@@ -1,11 +1,11 @@
 {
-  "id": "btn_click",
-  "label": "UI Button Click",
-  "resource": "Audio/SFX/btn_click",
-  "volume": 1.0,
-  "pitch": 1.0,
-  "loop": false,
-  "channel": 2,
-  "fadeInDuration": 0.0,
-  "fadeOutDuration": 0.0
+    "id":  "btn_click",
+    "label":  "UI Button Click",
+    "resource":  "Audio/SFX/btn_click",
+    "volume":  1.0,
+    "pitch":  1.0,
+    "loop":  false,
+    "channel":  2,
+    "fadeInDuration":  0.0,
+    "fadeOutDuration":  0.0
 }

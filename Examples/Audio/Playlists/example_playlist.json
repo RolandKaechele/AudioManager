@@ -1,12 +1,12 @@
 {
-  "id": "chapter01_playlist",
-  "label": "Chapter 1 Music Playlist",
-  "trackIds": [
-    "town_theme",
-    "danger_theme",
-    "victory_theme"
-  ],
-  "shuffle": false,
-  "loop": true,
-  "crossfadeDuration": 1.5
+    "id":  "chapter01_playlist",
+    "label":  "Chapter 1 Music Playlist",
+    "trackIds":  [
+                     "town_theme",
+                     "danger_theme",
+                     "victory_theme"
+                 ],
+    "shuffle":  false,
+    "loop":  true,
+    "crossfadeDuration":  1.5
 }
