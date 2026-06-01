@@ -1,8 +1,9 @@
-﻿{
+{
     "name": "AudioManager.Editor",
     "rootNamespace": "AudioManager.Editor",
     "references": [
-        "AudioManager.Runtime"
+        "AudioManager.Runtime",
+        "UnityEngine.UI"
     ],
     "includePlatforms": [
         "Editor"
